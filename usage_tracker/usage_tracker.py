@@ -27,15 +27,12 @@ def silent_tracker(
     streamkey = f"{appname}"
 
     # Check if the profile already exists for this app, 
-    # if yes, increase the counter
-    # if not, create the profile and increase the counter
-    
-    if r.exists(userkey) > 0:
-        r.hincrby(userkey, "counter", 1)
-    else:
+    # if not, create the profile
+    if r.exists(userkey) == 0:
         r.hset(userkey, mapping={"user": user, "counter": 0})
-        r.hincrby(userkey, "counter", 1)
-
+        
+    r.hincrby(userkey, "counter", 1)
+    
     r.xadd(
         streamkey,
         {
