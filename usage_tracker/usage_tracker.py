@@ -7,7 +7,7 @@ import os
 
 
 def silent_tracker(
-    redis_port, redis_host, redis_username, redis_password, appname='generic', payload="", email=""
+    redis_port, redis_host, redis_username, redis_password, appname='generic', payload="", email="", filename=os.path.basename(__file__)
 ):
     r = redis.Redis(
         host=redis_host,
@@ -33,14 +33,14 @@ def silent_tracker(
     if r.exists(userkey) > 0:
         r.hincrby(userkey, "counter", 1)
     else:
-        r.hset(userkey, mapping={"user": user, "counter": 1})
+        r.hset(userkey, mapping={"user": user, "counter": 0})
         r.hincrby(userkey, "counter", 1)
 
     r.xadd(
         streamkey,
         {
             "appname": appname,
-            "filename" : os.path.basename(__file__),
+            "filename" : filename,
             "user": user,
             "email" : email,
             "host": socket.gethostname(),
