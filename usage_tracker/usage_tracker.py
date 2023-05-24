@@ -3,6 +3,7 @@ from datetime import datetime
 import time
 import socket
 import getpass
+import os
 
 
 def silent_tracker(
@@ -39,6 +40,7 @@ def silent_tracker(
         streamkey,
         {
             "appname": appname,
+            "filename" : os.path.basename(__file__),
             "user": user,
             "email" : email,
             "host": socket.gethostname(),

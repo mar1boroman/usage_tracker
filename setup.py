@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name='usage_tracker',
-    version='0.0.1',
+    version='0.0.2',
     author='Omkar Konnur',
     author_email='omkar.konnur@redis.com',
     description='Track Usage of any python script using redis database',
