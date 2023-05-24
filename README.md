@@ -4,7 +4,7 @@ Python package to track the usage of any python script, generate events and send
 # Sample usage in your script
 
 ```python
-from usage_tracker.usage_tracker import silent_tracker
+from usage_tracker import silent_tracker
 
 silent_tracker(
     redis_host='<YOUR REDIS HOST>',
@@ -13,6 +13,7 @@ silent_tracker(
     redis_password='<YOUR REDIS PASSWORD>',
     appname='<APP/FILE NAME [ OPTIONAL | Default : generic ]>',
     email='<EMAIL ADDRESS [ OPTIONAL | Default : empty]>',
-    payload='<PAYLOAD STRING[ OPTIONAL | Default : empty]>'
+    payload='<PAYLOAD STRING[ OPTIONAL | Default : empty]>',
+    filename=os.path.basename(__file__)
 )
 ```
